@@ -23,7 +23,7 @@
     margin: 0 auto;
   }
   .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; letter-spacing: 1px; font-size: 14px; }
-  .nav-brand img { width: 32px; height: 32px; border-radius: 50%; }
+  .nav-brand img { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; }
   .tabs { display: flex; gap: 10px; }
   .tab-btn {
     background: transparent;
@@ -122,7 +122,6 @@
     text-transform: uppercase; color: #D4AF37; border: 1px solid #D4AF37;
     border-radius: 12px; padding: 3px 10px; margin: 12px 0 0 12px;
   }
-  /* Full image visible, no cropping */
   .post-image-box {
     width: 100%;
     height: 260px;
@@ -169,12 +168,12 @@
 
   <nav>
     <div class="nav-brand">
-      <img src="logo.png" alt="The Winner Show logo">
-      THE WINNER SHOW
+      <img src="logo.png" alt="Logo" id="nav-logo">
+      <span id="nav-title">THE WINNER SHOW</span>
     </div>
     <div class="tabs">
-      <button class="tab-btn active" onclick="showTab('winner-show', this)">The Winner Show</button>
-      <button class="tab-btn" onclick="showTab('transfer-portal', this)">Transfer Portal Daily</button>
+      <button class="tab-btn active" onclick="showTab('winner-show', this, 'logo.png', 'THE WINNER SHOW')">The Winner Show</button>
+      <button class="tab-btn" onclick="showTab('transfer-portal', this, 'portal-logo.png', 'TRANSFER PORTAL DAILY')">Transfer Portal Daily</button>
     </div>
   </nav>
 
@@ -269,6 +268,7 @@
     <div id="transfer-portal" class="tab-content">
 
       <div class="hero">
+        <img src="portal-logo.png" alt="Transfer Portal Daily logo" class="logo">
         <div class="eyebrow">Instagram Media Kit</div>
         <h1>Transfer Portal Daily</h1>
         <p class="tagline">Daily college football and basketball transfer portal news, rankings and analysis</p>
@@ -330,11 +330,13 @@
   </div>
 
 <script>
-  function showTab(id, btn) {
+  function showTab(id, btn, logoSrc, title) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
     document.getElementById(id).classList.add('active');
     btn.classList.add('active');
+    document.getElementById('nav-logo').src = logoSrc;
+    document.getElementById('nav-title').textContent = title;
   }
 </script>
 
